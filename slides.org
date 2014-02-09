@@ -1,0 +1,77 @@
+#+TITLE: Clojure's Persistent Data Structures
+#+AUTHOR: Craig Andera
+#+EMAIL: craig@cognitect.com
+
+* Clojure's Persistent Data Strcutures    :title:slide:
+
+Presented at Maryland Data Science
+February 12^th^, 2014
+
+[[file:cognitect-logo.jpg]]
+
+# Note: things using this comment syntax will not be exported
+
+** COMMENT Outline
+
+- About me
+- Quick tour of Clojure syntax and atomic types
+- Collection types
+- Persistence
+- Datomic?
+
+** Slides
+*** Me                                                                :slide:
+**** Craig Andera
+**** @craigandera
+**** craig@cognitect.com
+**** http://cognitect.com/podcast
+
+*** The usual suspects: numbers and strings                           :slide:
+
+#+begin_src clojure
+  3
+  1.7
+  "hi there"
+#+end_src
+
+*** A few fancier ones                                                :slide:
+#+begin_src clojure
+  11/2                                    ; ratios
+  :foo                                    ; keywords
+  foo                                     ; symbols
+  #"fo+"                                  ; regular expressions
+#+end_src
+
+*** Collections                                                       :slide:
+#+begin_src clojure
+
+#+end_src
+
+
+*** Colophon                                                          :slide:
+**** Typography
+***** Carrois Gothic
+*** Questions?                                                  :title:slide:
+
+*** Thanks!                                                     :title:slide:
+
+* Footer
+
+#+TAGS: slide(s)
+
+#+HTML_HEAD_EXTRA: <link rel="stylesheet" type="text/css" href="common.css" />
+#+HTML_HEAD_EXTRA: <link rel="stylesheet" type="text/css" href="screen.css" media="screen" />
+#+HTML_HEAD_EXTRA: <link rel="stylesheet" type="text/css" href="projection.css" media="projection" />
+#+HTML_HEAD_EXTRA: <link rel="stylesheet" type="text/css" href="presenter.css" media="presenter" />
+#+HTML_HEAD_EXTRA: <link rel="stylesheet" type="text/css" href="local.css" />
+
+#+BEGIN_HTML
+<script type="text/javascript" src="org-html-slideshow.js"></script>
+#+END_HTML
+
+# Local Variables:
+# org-export-html-style-include-default: nil
+# org-export-html-style-include-scripts: nil
+# End:
+
+

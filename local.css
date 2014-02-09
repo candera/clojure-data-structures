@@ -1,0 +1,93 @@
+/* Stuff in here is meant to only affect this particular presentation.
+*/
+
+@import url(http://fonts.googleapis.com/css?family=Carrois+Gothic);
+
+body {
+    background: white;
+    background-image: -webkit-linear-gradient(top left, #EAE4BB 0%, white 100%);
+    color: black;
+    height: 768px;
+    font-family: 'Carrois Gothic';
+}
+
+div#current-slide ul {
+    margin-top: 10pt;
+    margin-bottom: 10pt;
+}
+
+span.tag {
+    display: none
+}
+
+h4
+{
+    padding-top: 4%;
+    padding-bottom: 2%
+}
+
+.src-clojure {
+    background: black;
+    color: white;
+    border: solid 2 black;
+}
+
+div.title h2 {
+    margin-top: 25%
+}
+
+/* Adjust for the fact that org-mode spews trailing &nbsp; entities in
+   places where they screw up the layout */
+.fixnowrap {
+    white-space: nowrap;
+}
+
+.src
+{
+    border: solid 2px black;
+    -webkit-border-radius: 8px;
+    padding: 9px 5px;
+}
+
+table {
+    margin: auto;
+}
+
+thead {
+    text-align: left;
+}
+
+.eavt-table table {
+    font-family: 'Courier New';
+    font-weight: bold;
+}
+
+.eavt-table thead {
+    text-align: center;
+}
+
+.eavt-table table td {
+    border-style: solid;
+    border-width: 1px;
+    padding: 10px 25px;
+}
+
+p.image {
+    -webkit-margin-before: 0;
+}
+
+.smaller-code pre {
+    font-size: 80%;
+}
+    
+td code {
+    font-weight: bold;
+}
+
+li code {
+    font-weight: bold;
+}
+
+.section-number-4 {
+    display: none;
+}
