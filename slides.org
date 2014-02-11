@@ -5,6 +5,7 @@
 * Clojure's Persistent Data Strcutures    :title:slide:
 
 Presented at Maryland Data Science
+
 February 12^th, 2014
 
 [[file:cognitect-logo.jpg]]
@@ -40,13 +41,14 @@ February 12^th, 2014
   "hi there"
 #+end_src
 
-*** Clojure Data Types                              :slide:
+*** Clojure Data Types                                                :slide:
 - A few fancier ones
 #+begin_src clojure
-  11/2        ; ratios
-  :foo        ; keywords
-  foo         ; symbols
-  #"fo+"      ; regular expressions
+  11/2                 ; ratios
+  :foo                 ; keywords
+  foo                  ; symbols
+  #"fo+"               ; regular expressions
+  #duration "00:30:12" ; BYODT!
 #+end_src
 
 *** Collections                                                       :slide:
@@ -67,8 +69,8 @@ February 12^th, 2014
 #+begin_src clojure
   (def foo 3)
 
-  foo                ; => 3
-  (+ 1 2.0)          ; => 3.0
+  foo                  ; => 3
+  (+ 1 2.0)            ; => 3.0
   (+ 2.0 (* foo 17/3)) ; => 19.0
 #+end_src
 
@@ -78,8 +80,7 @@ February 12^th, 2014
 - In Clojure, /compound/ values are immutable too
 - Key to Clojure's concurrency model
 - You cannot /change/ an immutable value
-  - Generate new ones instead
-  - Persistent data structures ensure this is efficient
+- Generate new ones instead
 
 *** Collections are Immutable                                         :slide:
 
@@ -105,7 +106,7 @@ February 12^th, 2014
 #+begin_src clojure
   (def xs '(2 3 4))
   (def ys (conj xs 1))
-  xs ;=> (2 3 4)o
+  xs ;=> (2 3 4)
   ys ;=> (1 2 3 4)
 #+end_src
 
@@ -129,24 +130,34 @@ file:collections-tree-2.svg
 
 file:collections-structural-sharing.svg
 
-*** Performance                                                       :slide:
-- TODO Say something about performance
+*** Advantages                                                        :slide:
 
-Talk about perf guarantees of various structures
-Talk about branching factor and bitmapping
-*** Log-base-32                                                       :slide:
+- Don't have to worry about concurrent modification
+- Makes time explicit
+- Clojure still offers in-place mutation
+  - But it is explicit, rare, and controlled
 
-- When we say O(1) *
-- We really mean O(log @@h:<sub>32</sub>@@ /n/)
-- Which is *really close* to O(1)
-- And actually *is* O(1) for /n/ < 1 billion
+*** What About Performance?                                           :slide:
 
+- Shared structure means reasonable memory characteristics
+- High branching means quick access
+  - O(log_32 N) is essentially O(1)
+- Other options for the rare times perf insufficient
 
-*** Something About Datomic                                           :slide:
-- TODO
+file:hash-trie.png
+
+*** Datomic                                                           :slide:
+
+- Database is immutable and persistent
+- Makes the /database/ a value
+- Can view the database as it was
+  - At any point in its history
+
+file:index-tree-append.png
+
 *** Colophon                                                          :slide:
-**** Typography
-***** Carrois Gothic
+- Typography
+  - Carrois Gothic
 *** Questions?                                                  :title:slide:
 
 *** Thanks!                                                     :title:slide:
