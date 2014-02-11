@@ -5,7 +5,7 @@
 * Clojure's Persistent Data Strcutures    :title:slide:
 
 Presented at Maryland Data Science
-February 12^th^, 2014
+February 12^th, 2014
 
 [[file:cognitect-logo.jpg]]
 
@@ -20,40 +20,185 @@ February 12^th^, 2014
 - Datomic?
 
 ** Slides
-*** Me                                                                :slide:
+*** Me
 **** Craig Andera
 **** @craigandera
 **** craig@cognitect.com
 **** http://cognitect.com/podcast
 
-*** The usual suspects: numbers and strings                           :slide:
+*** Clojure                                                           :slide:
+- A Lisp
+- Hosted
+- Functional
+- Rich Literal Data Types
 
+*** Clojure Data Types                                                :slide:
+- The usual suspects
 #+begin_src clojure
   3
   1.7
   "hi there"
 #+end_src
 
-*** A few fancier ones                                                :slide:
+*** Clojure Data Types                              :slide:
+- A few fancier ones
 #+begin_src clojure
-  11/2                                    ; ratios
-  :foo                                    ; keywords
-  foo                                     ; symbols
-  #"fo+"                                  ; regular expressions
+  11/2        ; ratios
+  :foo        ; keywords
+  foo         ; symbols
+  #"fo+"      ; regular expressions
 #+end_src
 
 *** Collections                                                       :slide:
 #+begin_src clojure
-
+  [1 :two "three" 4.0]           ; Vectors
+  ("one" 2 :three [4])           ; Lists
+  {:one 1 :two 2 :three (1 2 3)} ; Maps
+  #{:one "two" 9/3}              ; Sets
 #+end_src
 
+*** Evaluation                                                        :slide:
+- Clojure distinguishes between read time and eval time
+- Everything except symbols and lists eval as themselves
+- Symbols eval to whatever they refer to
+- Lists apply the first item to the remainder
 
+*** Evaluation                                                        :slide:
+#+begin_src clojure
+  (def foo 3)
+
+  foo                ; => 3
+  (+ 1 2.0)          ; => 3.0
+  (+ 2.0 (* foo 17/3)) ; => 19.0
+#+end_src
+
+*** Collections are Immutable                                         :slide:
+
+- Simple values (numbers, strings) are immutable
+- In Clojure, /compound/ values are immutable too
+- Key to Clojure's concurrency model
+- You cannot /change/ an immutable value
+  - Generate new ones instead
+  - Persistent data structures ensure this is efficient
+
+*** Collections are Immutable                                         :slide:
+
+#+begin_src clojure
+  (def x [1 2 3])
+  (def y (conj x 4))
+
+  y     ; => [1 2 3 4]
+  x     ; => [1 2 3]
+#+end_src
+
+*** Collections are Persistent                                        :slide:
+
+- New values built from old values + modifications
+- New values are not full copies
+- New value and old value are both available after 'changes'
+- Maintains performance guarantees for most operations
+- All Clojure data structures are persistent
+
+*** Example: Linked List                                              :slide:
+- Linked lists are trivially persistent for append at head
+
+#+begin_src clojure
+  (def xs '(2 3 4))
+  (def ys (conj xs 1))
+  xs ;=> (2 3 4)o
+  ys ;=> (1 2 3 4)
+#+end_src
+
+*** Example: Linked List                                              :slide:
+
+file:collections-linked-list-1.svg
+
+*** Example: Linked List                                              :slide:
+
+file:collections-linked-list-2.svg
+
+*** Example: Binary Tree                                              :slide:
+
+file:collections-tree-1.svg
+
+*** Example: Binary Tree                                              :slide:
+
+file:collections-tree-2.svg
+
+*** Example: Shared Structure                                         :slide:
+
+file:collections-structural-sharing.svg
+
+*** Performance                                                       :slide:
+- TODO Say something about performance
+
+Talk about perf guarantees of various structures
+Talk about branching factor and bitmapping
+*** Log-base-32                                                       :slide:
+
+- When we say O(1) *
+- We really mean O(log @@h:<sub>32</sub>@@ /n/)
+- Which is *really close* to O(1)
+- And actually *is* O(1) for /n/ < 1 billion
+
+
+*** Something About Datomic                                           :slide:
+- TODO
 *** Colophon                                                          :slide:
 **** Typography
 ***** Carrois Gothic
 *** Questions?                                                  :title:slide:
 
 *** Thanks!                                                     :title:slide:
+
+*** Extras                                                      :slide:title:
+*** Data Structures are Functions                                     :slide:
+
+- *Maps* are functions of their *keys*
+- *Keywords* are functions of *maps*
+- *Sets* are functions of their *elements*
+- *Vectors* are functions of their *indices*
+
+*** Maps & Keywords are Functions                                     :slide:
+
+#+begin_src clojure
+  (def m {:a 1 :b 2})
+
+  ;; Maps are functions of their keys
+  (m :b)       ;;=> 2
+  (m :foo)     ;;=> nil
+  (m :foo 50)  ;;=> 50    ; default
+
+  ;; Keywords are functions of maps
+  (:a m)    ;;=> 1
+#+end_src
+
+*** Sets are Functions                                                :slide:
+
+#+begin_src clojure
+  (def s #{3 7 9})
+
+  ;; Returns the element if it's in the set:
+  (s 7)   ;;=> 7
+
+  ;; Returns nil otherwise:
+  (s 20)  ;;=> nil
+#+end_src
+
+*** Vectors are Functions                                             :slide:
+
+#+begin_src clojure
+  (def v [:a :b :c])
+
+  (v 2)   ;;=> :c
+
+  (v 10)  ;> ERROR
+#+end_src
+
+
+
+*** Pictures                                                          :slide:
+[[file:nodes_example.png][file:nodes_example.png]] ([[http://mikefroh.blogspot.com/2012/06/immutable-hash-trie-maps-in-java.html][source]])
 
 * Footer
 
@@ -73,5 +218,3 @@ February 12^th^, 2014
 # org-export-html-style-include-default: nil
 # org-export-html-style-include-scripts: nil
 # End:
-
-

@@ -26,10 +26,15 @@ h4
     padding-bottom: 2%
 }
 
+pre.src {
+    padding-top: 9px;
+}
+
 .src-clojure {
     background: black;
     color: white;
     border: solid 2 black;
+    padding-top: default;
 }
 
 div.title h2 {
